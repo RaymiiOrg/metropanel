@@ -1,0 +1,44 @@
+// sluiten1 == D2 == ook 100 Kh Ohm weerstand naar ground. 
+// sluiten2 == 5v
+// openen1 == D12 == ook 100 Kh Ohm weerstand naar ground. 
+// openen2 == 5v
+// 
+int openPin = 12;
+int closePin = 2;
+int led = 13;
+
+void setup() {
+
+  Serial.begin(9600);
+  Serial.println("Start Metro Knopjes");
+  pinMode(closePin, INPUT);
+  pinMode(openPin, INPUT);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led, LOW);
+
+  int openButtonState = digitalRead(openPin);
+  int closeButtonState = digitalRead(closePin);
+  
+  if (closeButtonState == 0) {
+    // ingedrukt
+    Serial.println("Sluiten ingedrukt");
+    Serial.println("   ");
+    digitalWrite(led, HIGH);
+    delay(200);
+  }
+
+  if (openButtonState == 0) {
+    // ingedrukt
+    Serial.println("Openen ingedrukt");
+    Serial.println("   ");
+    digitalWrite(led, HIGH);
+    delay(200);
+  } 
+ 
+  digitalWrite(led, LOW);
+  delay(100);
+    
+}
